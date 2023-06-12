@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Task !{% endblock %}
+
+{% block body %}
+    <h1>Toutes les Tasks !</h1>
+
+    <div>
+        <a href="{{ path('app_task_new') }}" class="btn btn-primary">Créer une Task</a>
+    </div>
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Created At</th>
+                <th>Title</th>
+                <th>Content</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.id }}</td>
+                    <td>{{ task.createdAt|date('d/m/Y') }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.content|slice(0, 25) }}...</td>
+                    <td><i class="fa-solid fa-house"></i> - <i></i></td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="4" class="text-center text-bg-danger">Pas encore de Task !</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="4">Nombre de Tasks : <b>{{ tasks|length }}</b></td>
+        </tr>
+        </tfoot>
+    </table>
+{% endblock %}

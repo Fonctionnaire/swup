@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Experience with Swup !{% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <div id="main-nav-id">
+                <a href="{{ path('app_home') }}"><- RETOUR</a>
+            </div>
+        </header>
+        <div id="xp-base-body">
+            <div  {{ stimulus_controller('symfony/ux-swup/swup', {
+                containers: ['#swup', '#step'],
+                animationSelector: '[class*="transition-"]',
+                cache: true,
+                theme: 'slide',
+            }) }}>
+                <main id="swup" class="container xp-section-id">
+                    {% block body %}{% endblock %}
+                </main>
+            </div>
+            <section id="xp-section-sound" class="container mt-4">
+                <figure>
+                    <figcaption>Listen to the My Sound :</figcaption>
+                    <audio src="{{ asset('audio/soft-rain-ambient-111154.mp3') }}" autoplay loop controls preload="auto"></audio>
+                </figure>
+                <div id="step">
+                    {% block step %}
+                    {% endblock %}
+                </div>
+            </section>
+        </div>
+    </body>
+</html>

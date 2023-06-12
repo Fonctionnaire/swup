@@ -1,0 +1,23 @@
+{# =========== ADD NEW TASK ============ #}
+<turbo-stream action="update" target="form_new_task">
+        <template>
+            <h2 class="text-center text-bg-success text-white">La task {{ task.id }} a bien été ajoutée !</h2>
+            <div>
+                <p>{{ task.title }}</p>
+                <span><i>Le {{ task.createdAt|date('d/m/y à H:i')}}</i></span>
+                <div class="border-black p-2 mt-2">
+                    {{ task.content }}
+                </div>
+            </div>
+            <br>
+            <hr>
+            <br>
+        </template>
+</turbo-stream>
+
+{# ========== RESET TASK FORM ================ #}
+<turbo-stream action="replace" target="task-form">
+    <template>
+        {% include 'task/_form.html.twig' %}
+    </template>
+</turbo-stream>
